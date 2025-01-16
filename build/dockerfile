@@ -8,8 +8,6 @@ RUN go mod download
 COPY cmd/api ./cmd/api
 COPY internal ./internal
 COPY pkg ./pkg
-COPY config ./config
-COPY docs ./docs
 COPY secret ./secret
 
 RUN go build -o /app/main ./cmd/api/main.go
