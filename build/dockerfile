@@ -17,8 +17,6 @@ FROM golang:latest
 WORKDIR /app
 
 COPY --from=builder /app/main .
-
-COPY --from=builder /app/config ./config
 COPY --from=builder /app/secret ./secret
 COPY --from=builder /app/secret/.env ./secret/.env
 
