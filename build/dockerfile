@@ -8,7 +8,6 @@ RUN go mod download
 COPY cmd/app ./cmd/app
 COPY internal ./internal
 COPY pkg ./pkg
-COPY secret ./secret
 
 RUN go build -o /app/main ./cmd/app/main.go
 
@@ -17,7 +16,5 @@ FROM golang:latest
 WORKDIR /app
 
 COPY --from=builder /app/main .
-COPY --from=builder /app/secret ./secret
-COPY --from=builder /app/secret/.env ./secret/.env
 
 CMD ["./main"]
