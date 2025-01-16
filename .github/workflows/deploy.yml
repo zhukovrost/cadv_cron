@@ -18,6 +18,7 @@ jobs:
       - name: Create .env file for cadv_api
         run: |
           mkdir -p secret
+          touch secret/.env
           echo "DBSTRING=postgres://cadvadmin:${{ secrets.DB_PASSWORD }}@${{ secrets.HOST }}:5432/cadvdb?sslmode=disable" >> secret/.env
           
       - name: Log in to Docker Hub
