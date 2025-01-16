@@ -10,7 +10,7 @@ COPY internal ./internal
 COPY pkg ./pkg
 COPY secret ./secret
 
-RUN go build -o /app/main ./cmd/api/main.go
+RUN go build -o /app/main ./cmd/app/main.go
 
 FROM golang:latest
 
