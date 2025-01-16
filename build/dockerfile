@@ -1,15 +1,20 @@
-FROM golang:1.21 as builder
+FROM golang:1.23 as builder
 
 WORKDIR /app
 
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY . .
+COPY cmd/api ./cmd/api
+COPY internal ./internal
+COPY pkg ./pkg
+COPY config ./config
+COPY docs ./docs
+COPY secret ./secret
 
-RUN go build -o /app/main ./cmd/app/main.go
+RUN go build -o /app/main ./cmd/api/main.go
 
-FROM alpine:latest
+FROM golang:latest
 
 WORKDIR /app
 
@@ -17,5 +22,6 @@ COPY --from=builder /app/main .
 
 COPY --from=builder /app/config ./config
 COPY --from=builder /app/secret ./secret
+COPY --from=builder /app/secret/.env ./secret/.env
 
 CMD ["./main"]
