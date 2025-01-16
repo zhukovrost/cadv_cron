@@ -5,7 +5,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY cmd/api ./cmd/api
+COPY cmd/app ./cmd/app
 COPY internal ./internal
 COPY pkg ./pkg
 COPY secret ./secret
